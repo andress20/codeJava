@@ -38,7 +38,8 @@ public class InOut {
         a=a +"7. Transpuesta \n";
         a=a +"8. Frecuencia Vocal \n";
         a=a +"9. Frase conteo letras \n";
-        a=a +"10. Cuadrado Magico \n\n";
+        a=a +"10. Cuadrado Magico \n";
+        a=a +"11. Salir \n\n";
         
         return Integer.parseInt(pedirInf(a + "Eliga una opcion"));
     }

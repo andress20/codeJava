@@ -11,14 +11,15 @@ public class Controler {
 	
 	public Controler(int opc){
 		InOut io = new InOut();
-		Matriz m= new Matriz(3,4);
+		Matriz m= new Matriz();
 		switch (opc){
 			case 1: 
-				m.llenarMatriz();
-//				m.llenarMatrizRandom();
+//				m.llenarMatriz();
+				m.llenarMatrizRandom();
 				m.mostrarMatriz();
 				io.mostrarInf("la suma dio: " + m.sumarElementos());
 				io.mostrarInf("La multiplicacion dio: "+m.multiplicaElementos());
+				
 				break;
 			case 2:
 				m.llenarMatrizRandom();
@@ -32,7 +33,9 @@ public class Controler {
 //				m.llenarMatriz();
 				m.mostrarMatriz();
 				m.mayorSumatoriaFilasyColumnas();
-				
+				break;
+			case 11:
+				System.exit(0);;
 				
 		}
 			 

@@ -14,14 +14,20 @@ public class Matriz {
 	private int tamanoMatrizM;
 	private int[][] matriz;
 	
-	
-//	Constructor por defecto
 	public Matriz(){
-		
-	}
-	
-//	Constructor con parametros
-	public Matriz(int n, int m){
+		InOut io = new InOut();
+		String nTemp = io.pedirInf("Tamaño de la matriz en filas.");
+		while(!validarElementosMatriz(nTemp)){
+			io.mostrarInf("debes digitar un numero mayor a cero!");
+			nTemp = io.pedirInf("Tamaño de la matriz en filas.");
+		}
+		int n = Integer.parseInt(nTemp);
+		String mTemp = io.pedirInf("Tamaño de la matriz en columnas.");
+		while(!validarElementosMatriz(mTemp)){
+			io.mostrarInf("debes digitar un numero mayor a cero!");
+			mTemp = io.pedirInf("Tamaño de la matriz en columnas.");
+		}
+		int m = Integer.parseInt(mTemp);
 		this.matriz = new int [n][m];
 		this.tamanoMatrizN = n;
 		this.tamanoMatrizM = m;
@@ -89,6 +95,16 @@ public class Matriz {
 	
 	public boolean validarElementosMatriz(String criterio){
 		Pattern pat = Pattern.compile("[0-9]|[0-9][0-9]");
+		Matcher mat = pat.matcher(criterio);
+		if(mat.matches()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public boolean validarElementosUnSoloDigito(String criterio){
+		Pattern pat = Pattern.compile("[0-9]");
 		Matcher mat = pat.matcher(criterio);
 		if(mat.matches()){
 			return true;
