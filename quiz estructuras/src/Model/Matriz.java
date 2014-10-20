@@ -1,0 +1,141 @@
+package Model;
+
+import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import View.InOut;
+
+public class Matriz {
+	
+//	ATRIBUTOS
+	
+	private int tamanoMatrizN;
+	private int tamanoMatrizM;
+	private int[][] matriz;
+	
+	public Matriz(){
+		InOut io = new InOut();
+		String nTemp = io.pedirInf("Tamaño de la matriz en filas.");
+		while(!validarElementosMatriz(nTemp)){
+			io.mostrarInf("debes digitar un numero mayor a cero!");
+			nTemp = io.pedirInf("Tamaño de la matriz en filas.");
+		}
+		int n = Integer.parseInt(nTemp);
+		String mTemp = io.pedirInf("Tamaño de la matriz en columnas.");
+		while(!validarElementosMatriz(mTemp)){
+			io.mostrarInf("debes digitar un numero mayor a cero!");
+			mTemp = io.pedirInf("Tamaño de la matriz en columnas.");
+		}
+		int m = Integer.parseInt(mTemp);
+		this.matriz = new int [n][m];
+		this.tamanoMatrizN = n;
+		this.tamanoMatrizM = m;
+	}
+	
+	public void llenarMatriz(){
+		InOut io = new InOut();
+		io.mostrarInf("Ingrese valores para la matriz (por filas)");
+		for(int i=0; i<matriz.length;i++){
+			for(int j=0; j<matriz[i].length;j++){
+				String numeroIn = io.pedirInf("ingrese valor " + i + j +" :");
+					while(!validarElementosMatriz(numeroIn)){
+						io.mostrarInf("Debe ingresar números de 2 digitos unicamente!");
+						numeroIn = io.pedirInf("ingrese valor " + i + j +" :");
+					}
+				matriz[i][j]= Integer.parseInt(numeroIn);
+				}
+				
+			}
+	}
+	
+	public void llenarMatrizRandom(){
+		Random r = new Random();
+		InOut io = new InOut();
+		io.mostrarInf("Se ingresaran valores aleatorios en la matriz.");
+		for(int i=0; i<matriz.length;i++){
+			for(int j=0; j<matriz[i].length;j++){
+				matriz[i][j]= r.nextInt(20);
+			}
+		}
+	}
+	
+	
+	public void mostrarMatriz(){
+		InOut io = new InOut();
+		String strMatriz = new String("");
+		for(int i=0;i<matriz.length;i++){
+			for(int j=0;j<matriz[i].length;j++){
+				strMatriz = strMatriz + "[" + matriz[i][j] + "]   "; 
+			}
+			strMatriz = strMatriz + "\n";
+		}
+		io.mostrarInf(strMatriz);
+	}
+	
+	public int sumarElementos(){
+		int resultado =0;
+		for(int i=0;i<matriz.length;i++){
+			for(int j=0;j<matriz[i].length;j++){
+				resultado = resultado + matriz[i][j];
+			}
+		}
+		return resultado;
+	}
+	
+	public long multiplicaElementos(){
+		long resultado=1;
+		for(int i=0;i<matriz.length;i++){
+			for(int j=0;j<matriz[i].length;j++){
+				resultado = (resultado * matriz[i][j]);
+			}
+		}
+		return resultado;
+	}
+	
+	public boolean validarElementosMatriz(String criterio){
+		Pattern pat = Pattern.compile("[0-9]|[0-9][0-9]");
+		Matcher mat = pat.matcher(criterio);
+		if(mat.matches()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public boolean validarElementosUnSoloDigito(String criterio){
+		Pattern pat = Pattern.compile("[0-9]");
+		Matcher mat = pat.matcher(criterio);
+		if(mat.matches()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public int getTamanoMatrizN() {
+		return tamanoMatrizN;
+	}
+
+	public void setTamanoMatrizN(int tamanoMatrizN) {
+		this.tamanoMatrizN = tamanoMatrizN;
+	}
+
+	public int getTamanoMatrizM() {
+		return tamanoMatrizM;
+	}
+
+	public void setTamanoMatrizM(int tamanoMatrizM) {
+		this.tamanoMatrizM = tamanoMatrizM;
+	}
+
+	public int[][] getMatriz() {
+		return matriz;
+	}
+
+	public void setMatriz(int[][] matriz) {
+		this.matriz = matriz;
+	}
+	
+	
+}
