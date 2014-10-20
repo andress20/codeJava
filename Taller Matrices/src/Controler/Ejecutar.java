@@ -16,10 +16,12 @@ public class Ejecutar {
 		if(opc==11){
 			System.exit(0);
 		}
-		while (validarOpcionMenu(String.valueOf(opc))){
+		while (io.validarOpcionMenu(String.valueOf(opc))){
 			if(opc==0||opc>11){
 				io.mostrarInf("opción no válida");
 				opc = io.mostrarMenu();
+			}else if (opc==11){
+				System.exit(0);
 			}else{
 				Controler controler = new Controler(opc);
 				opc = io.mostrarMenu();
@@ -30,15 +32,7 @@ public class Ejecutar {
 		
 	}
 	
-	public static boolean validarOpcionMenu(String criterio){
-		Pattern pat = Pattern.compile("[0-9]|[1-9][0-9]");
-		Matcher mat = pat.matcher(criterio);
-		if(mat.matches()){
-			return true;
-		}else{
-			return false;
-		}
-	}
+	
 	
 	
 

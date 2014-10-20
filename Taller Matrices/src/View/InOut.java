@@ -6,6 +6,9 @@
 
 package View;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -41,7 +44,21 @@ public class InOut {
         a=a +"10. Cuadrado Magico \n";
         a=a +"11. Salir \n\n";
         
-        return Integer.parseInt(pedirInf(a + "Eliga una opcion"));
+        String opc = pedirInf(a + "Eliga una opcion");
+        while (!validarOpcionMenu(opc)){
+        	mostrarInf("Solo puedes ingresar numeros en el rango de opciones");
+        	opc = pedirInf(a + "Eliga una opcion");
+        }
+        return Integer.parseInt(opc);
     }
+	public static boolean validarOpcionMenu(String criterio){
+		Pattern pat = Pattern.compile("[0-9]|[1-9][0-9]");
+		Matcher mat = pat.matcher(criterio);
+		if(mat.matches()){
+			return true;
+		}else{
+			return false;
+		}
+	}
     
 }

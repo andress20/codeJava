@@ -35,7 +35,7 @@ public class Controler {
 				m.mayorSumatoriaFilasyColumnas();
 				break;
 			case 11:
-				System.exit(0);;
+				System.exit(0);
 				
 		}
 			 
