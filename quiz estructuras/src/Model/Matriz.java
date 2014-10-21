@@ -17,20 +17,25 @@ public class Matriz {
 	public Matriz(){
 		InOut io = new InOut();
 		String nTemp = io.pedirInf("Tamaño de la matriz en filas.");
-		while(!validarElementosMatriz(nTemp)){
-			io.mostrarInf("debes digitar un numero mayor a cero!");
+		while(!validarTamanioMatriz(nTemp)){
+			io.mostrarInf("debes digitar un numero entre 1 y 20");
 			nTemp = io.pedirInf("Tamaño de la matriz en filas.");
 		}
 		int n = Integer.parseInt(nTemp);
 		String mTemp = io.pedirInf("Tamaño de la matriz en columnas.");
-		while(!validarElementosMatriz(mTemp)){
-			io.mostrarInf("debes digitar un numero mayor a cero!");
+		while(!validarTamanioMatriz(mTemp)){
+			io.mostrarInf("debes digitar un numero entre 1 y 20");
 			mTemp = io.pedirInf("Tamaño de la matriz en columnas.");
 		}
 		int m = Integer.parseInt(mTemp);
 		this.matriz = new int [n][m];
 		this.tamanoMatrizN = n;
 		this.tamanoMatrizM = m;
+	}
+	public Matriz(int a, int b){
+		matriz = new int [a][b];
+		tamanoMatrizN = a;
+		tamanoMatrizM = b;
 	}
 	
 	public void llenarMatriz(){
@@ -111,6 +116,18 @@ public class Matriz {
 		}else{
 			return false;
 		}
+	}
+	public boolean validarTamanioMatriz(String criterio){
+		Pattern pat = Pattern.compile("[1-9]|[1][0-9]|[2][0]");
+		Matcher mat = pat.matcher(criterio);
+		if(mat.matches()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public int traerElemento(int a, int b){
+		return matriz[a][b];
 	}
 
 	public int getTamanoMatrizN() {
